@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>RoH Combat Calculator</title>
+    </head>
+    <style type="text/css">
+        #inputs {
+            display: flex;
+            justify-content: left;
+            column-gap: 2rem;
+            width: fit-content;
+            border: thin solid black;
+            margin: 0.5rem;
+            line-height: 2rem;
+        }
+        #inputs > div {
+            /* flex: 30% 0 0; */
+            padding: 0.5rem;
+            font-size: 1.1rem;
+        }
+        #inputs button {
+            width: 8rem;
+            height: 8rem;
+            font-size: 1.4rem;
+        }
+        .output {
+            display: inline-block;
+            border: thin solid black;
+            border-collapse: collapse;
+            margin: 0.5rem;
+            margin-bottom: 3rem;
+            vertical-align: top;
+        }
+        .output th, .output td {
+            height: 2rem;
+            width: 2rem;
+            border: 0;
+            margin: 0;
+        }
+        .output td.bottom-border {
+            border-bottom: thin solid black;
+        }
+        .output td.right-border {
+            border-right: thin solid black;
+        }
+        .output td {
+            position: relative;
+        }
+        .output td .tooltip {
+            display: none;
+            position: absolute;
+            z-index: 1;
+            top: 1rem;
+            left: 1rem;
+            width: 7rem;
+            height: 3rem;
+            padding: 0.5rem;
+            border: thin solid black;
+            color: #efefef;
+            line-height: 1.4rem;
+        }
+        .output td:hover .tooltip {
+            display: block;
+        }
+    </style>
+    <script type="text/javascript" src="probabilities.js"></script>
+    <body>
+        <div id="inputs">
+            <div>
+                <button onclick="computeProbs(); return false">Compute!</button>
+            </div>
+            <div>
+                <label>
+                    Peasants:
+                    <input type="number" name="npeasants" min="0" max="11" value="8" onchange="adjustCount(this)" />
+                </label>
+                <br />
+                <label>
+                    Soldiers:
+                    <input type="number" name="nsoldiers" min="0" max="7" value="0" onchange="adjustCount(this)" />
+                </label>
+                <br />
+                <label>
+                    Knights:
+                    <input type="number" name="nknights" min="0" max="2" value="0" onchange="adjustCount(this)" />
+                </label>
+                <br />
+                <label>
+                    Mercenary?
+                    <input type="checkbox" name="mercenary" />
+                </label>
+            </div>
+            <div>
+                <label>
+                    Enemy Attack:
+                    <input type="number" name="eattack" min="1" max="7" value="3" />
+                </label>
+                <br />
+                <label>
+                    Enemy Defense:
+                    <input type="number" name="edefense" min="1" max="25" value="3" />
+                </label>
+            </div>
+        </div>
+        <br />
+        <table id="attdef" class="output"></table>
+        <table id="outcome" class="output"></table>
+    </body>
+</html>
